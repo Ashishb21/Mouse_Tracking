@@ -11,7 +11,7 @@ import copy
 
 import torchvision.transforms as transforms
 from datapreprocess import Normalize, Rescale, ToTensor, getoriimage,Aug
-from utilis.netparameter160_test import config
+from utilis.netparameter160 import config
 
 numtest = 0
 numtest2 =0
@@ -47,8 +47,8 @@ class MouseKeypointsDataset(Dataset):
     def __getitem__(self, idx):
         image_name = os.path.join(self.root_dir,
                                   self.key_pts_frame.iloc[idx, 0])
-
-        image = mpimg.imread(image_name)  # (0-1)
+        print("image_name--------------",image_name)
+        image = cv2.imread(image_name)  # (0-1)
         # print(image.shape)
 
         # if image has an alpha color channel, get rid of it RGB images

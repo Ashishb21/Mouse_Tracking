@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Function
 from model.keypointspooling import LeftPool, TopPool, BottomPool,RightPool
-from utilis.featurevisualization import FeatureVisualization
+#from utilis.featurevisualization import FeatureVisualization
 j=0
 
 class ConvBnRelu(nn.Module):
@@ -16,8 +16,8 @@ class ConvBnRelu(nn.Module):
         self.kernelSize = kernelSize
         self.stride = stride
         self.padding = padding
-
-        self.conv = nn.Conv2d(self.inChannels, self.outChannels, self.kernelSize, self.stride, self.padding)
+        print("==========conv",self.inChannels,self.outChannels)
+        self.conv = nn.Conv2d(self.inChannels, self.outChannels, self.kernelSize, self.stride, self.padding,bias=self.inChannels)
         self.bn = nn.BatchNorm2d(self.outChannels)
         self.relu = nn.ReLU(inplace=True)
 

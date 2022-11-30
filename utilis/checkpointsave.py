@@ -1,6 +1,6 @@
 import torch
 import os
-from utilis.netparameter320 import config
+from utilis.netparameter160 import config
 
 
 def savecheckpoint(epoch, net, netname):

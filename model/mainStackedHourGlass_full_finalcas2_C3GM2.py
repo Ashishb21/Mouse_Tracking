@@ -6,7 +6,7 @@ import model.gm_twogate_ag as M
 
 
 
-from utilis.featurevisualization import FeatureVisualization
+#from utilis.featurevisualization import FeatureVisualization
 
 
 class myUpsample(nn.Module):

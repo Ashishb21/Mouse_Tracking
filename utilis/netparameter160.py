@@ -17,9 +17,9 @@ config['ncascaded'] = 1
 config['sigma'] = 1.0
 config['debug_vis'] = False
 config['root_path'] = ''
-
+config['start_epoch']=1
 #-------trainfile--------------------
-config['trainsample'] = 'labeled-data/MAQ00261/CollectedData_fx23.csv'
+config['trainsample'] = 'labeled-data/mouse/mouse_annotation.csv'
 # config['trainsample'] = 'labeled-data/mouse/CollectedData_Pranav_train.csv' #
 
 #zebra
@@ -28,7 +28,7 @@ config['trainsample'] = 'labeled-data/MAQ00261/CollectedData_fx23.csv'
 
 
 #--------validfile-------------------
-config['validsample'] = 'labeled-data-valid/MAQ00261/CollectedData_fx.csv' #valid 3000
+config['validsample'] = 'labeled-data/mouse/mouse_annotation.csv' #valid 3000
 # config['validsample'] = 'labeled-data/mouse/CollectedData_Pranav_test.csv'
 
 # config['validsample'] = 'labeled-data/zebraimage/data_test.csv'
