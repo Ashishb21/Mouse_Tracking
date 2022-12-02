@@ -6,12 +6,6 @@ This repository provides a PyTorch implementation of the paper [ Structured Cont
 <img src="pipeline.png" width="80%">
 </p>
 
-## Demo
-
-<p align="center">
-<img src="1-1.gif" width="40%">           <img src="1-2.gif" width="40%">
-</p>
-
 ## Requirements
 Tested with:
 * PyTorch 1.4.0
@@ -20,32 +14,25 @@ Tested with:
 
 * Python 3.6.8
 
-## Data Preparation
-* Download the  data from [DeepLabCut Mouse Pose](https://zenodo.org/record/4008504#.YQaXwpNKjDJ) and [DeepPoseKit Animal Pose](https://github.com/jgraving/DeepPoseKit-Data/tree/master/datasets). Then put them under the data directory:
-	```
-	-labeled-data\  
-	
-	  -mouse\  
-           ...
-	  -flyimage\ 
-           ...   
-	  -zebraimage\  
-           ...
-  ```            
+
 ## Training
 
 * Before running `train.py`, we need to compile Directionmax operation used in our paper, which is inspired by the corner pooling scheme in [CornerNet](https://github.com/princeton-vl/CornerNet).
 ```
-`cd <CornerNet dir>/models/py_utils/_cpools/`
-`python setup.py install --user`
+
+1)	Open google colab notebook 
+2)	Select the runtime as GPU
+3)	!git clone https://github.com/FeixiangZhou/GM-SCENet.git  <change name to your repo>
+4)	cd Mouse_Tracking/cornernet/models/py_utils/_cpools
+5)	!python setup.py install --user
+6)	cd ../../../../
+
 ```
 * Then train the model
 ```
 `python train.py`
 ```
 
-## Ethical Proof
-All experimental procedures were performed in accordance with the Guidance on the Operation of the Animals (Scientific Procedures) Act, 1986 (UK) and approved by the Queen’s University Belfast Animal.
 
 ## Citation
 If you find this repository useful, please cite our paper:
