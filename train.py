@@ -30,32 +30,15 @@ cudnn.benchmark = True
 device = torch.device("cuda:0,1" if torch.cuda.is_available() else "cpu")
 
 
-#DeepLabCut dataset
-# netname = 'mousefullnet_finalcas2_C1GM2_4fulltrain'
-# validresultname = 'results/mouse/compare/results/validresult_fullnet_finalcas2_C1GM2_4fulltrain.csv'
-# trainresultname = 'results/mouse/compare/results/trainresult_fullnet_finalcas2_C1GM2_4fulltrain.csv'
-
-
-
 #PDMB
 netname = 'pdmousefullnet_finalcas2_C3GM2'
 validresultname = 'results/pdmouse/compare/results/validresult_fullnet_finalcas2_C3GM2.csv'
 trainresultname = 'results/pdmouse/compare/results/trainresult_fullnet_finalcas2_C3GM2.csv'
 
 
-
-
-#zebra dataset
-# netname = 'zebrafullnet_finalcas2_C3GM2'
-# validresultname = 'results/zebra/compare/results/validresult_fullnet_finalcas2_C3GM2.csv'
-# trainresultname = 'results/zebra/compare/results/trainresult_fullnet_finalcas2_C3GM2.csv'
-
-
-
 parser = argparse.ArgumentParser(description='PyTorch Mousepose Training')
 parser.add_argument('--resume', '-r', action='store_true', help='resume from checkpoint')
 args = parser.parse_args()
-
 
 def get_peak_points(heatmaps):
     """
@@ -90,7 +73,7 @@ def get_mse(pred_points,gts,indices_valid=None):
     criterion = nn.MSELoss()
     corloss = criterion(pred_points,gts)
     rmse = np.sqrt(corloss)
-    #print("loss-----: %f" % corloss)
+    print("loss-----: %f" % corloss)
     return rmse
 
 def calculate_mask(heatmaps_targets):
@@ -119,7 +102,6 @@ def calculate_mask(heatmaps_targets):
     return mask,[N_idx,C_idx],[NaN_N_idx,NaN_C_idx]
 
 
-
 def makenotvalidpointsasnan(predicted, gts,indices_notvalid):
     for i,j in zip(indices_notvalid[0],indices_notvalid[1]):
         predicted[i,j,:] = [-1,-1]
@@ -146,7 +128,6 @@ def initnet():
     pprint.pprint(config)
     torch.manual_seed(0)
     net = Gmscenet( nChannels=128, nStack=config['nstack'], nModules=1, numReductions=3, nJoints=4)
-
 
     # using 2 Gpus
     print("Let's use", torch.cuda.device_count(), "GPUs")
@@ -196,6 +177,7 @@ def train(net, trainDataLoader, epoch):
 
     for i, data in enumerate(trainDataLoader):
         inputs = data['image']
+        inputs=inputs.float()
         heatmaps_targets = data['heatmaps']
         heatmaps_targets_2s = data['heatmaps_2s']
         gts = data['keypoints']
@@ -379,7 +361,6 @@ def valid(net, validDataLoader,epoch):
             acc, aveacc, _ = pck.eval(all_peak_points, gts, 0.2)
             valid_PCK += aveacc
 
-            # 计算每个部位的pck
             for k in range(0, 5):
                 if acc[k] != -1:
                     pckcount[k] += 1

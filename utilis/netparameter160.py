@@ -20,27 +20,6 @@ config['root_path'] = ''
 config['start_epoch']=1
 #-------trainfile--------------------
 config['trainsample'] = 'labeled-data/mouse/mouse_annotation.csv'
-# config['trainsample'] = 'labeled-data/mouse/CollectedData_Pranav_train.csv' #
-
-#zebra
-# config['trainsample'] = 'labeled-data/zebraimage/data_train.csv'
-# config['trainsample'] = 'labeled-data/flyimage/data_train.csv'
-
-
-#--------validfile-------------------
 config['validsample'] = 'labeled-data/mouse/mouse_annotation.csv' #valid 3000
-# config['validsample'] = 'labeled-data/mouse/CollectedData_Pranav_test.csv'
-
-# config['validsample'] = 'labeled-data/zebraimage/data_test.csv'
-# config['validsample'] = 'labeled-data/flyimage/data_test.csv'
-
-
-
-
-#--------testfile-------------------
-# config['testsample'] = 'labeled-data-test/MAQ00261/CollectedData_fx2000.csv' #2000
-# config['testsample'] = 'labeled-data/mouse/CollectedData_Pranav_test.csv'
-# config['testsample'] = 'labeled-data/zebraimage/data_test.csv'
-# config['testsample'] = 'labeled-data/flyimage/data_test.csv'
 
 
